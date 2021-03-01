@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="xmlstyle.css" ?>
+<Slist>
+    <Artist> 
+         <name>J Balvin </name> <br />
+        <Song> Sigo Extrañándote
+            <Year> 2016 </Year>
+            <Genre> Reggaetón </Genre>
+        </Song>
+
+        <Song> En Mí 
+            <Year> 2018 </Year>
+            <Genre> Reggaetón </Genre>
+        </Song>
+
+        <Song> Gris
+            <Year> 2020 </Year>
+            <Genre> Reggaetón </Genre>
+        </Song>
+
+        <Song> LA CANCIÓN
+            <Year> 2019 </Year>
+            <Genre> Reggaetón </Genre>
+        </Song>
+    </Artist> 
+
+    <Artist> Soda Stereo
+        <Song> De Música Ligera 
+            <Year> 1990 </Year>
+            <Genre> Pop Rock </Genre>
+        </Song>
+
+        <Song> Persiana Americana 
+            <Year> 1986 </Year>
+            <Genre> Pop Rock </Genre>
+        </Song>
+
+        <Song> Prófugos
+            <Year> 1986 </Year> 
+            <Genre> Pop Rock </Genre>
+        </Song>
+    </Artist>
+
+    <Artist> Miles Davis
+        <Song> Spanish Key
+            <Year> 1970 </Year>
+            <Genre> Jazz Rock </Genre>
+        </Song>
+
+        <Song> So what
+            <Year> 1959 </Year>
+            <Genre> Modal Jazz </Genre>
+        </Song>
+
+        <Song> Freddie Freeloader
+            <Year> 1959 </Year>
+            <Genre> Modal Jazz </Genre>
+        </Song>
+    </Artist>
+    
+</Slist>

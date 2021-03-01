@@ -1,0 +1,31 @@
+Slist {
+    vertical-align: center;
+    text-align: center;
+    margin: auto;
+    /* padding: 10%; */
+}
+Artist {
+    display: block;
+    text-align: center;
+    padding: 2%;
+    font-size: 30px;
+    /* padding-top: 15px; */
+    margin: 5%;
+    background-color: #8e86e6;
+}
+Artist Song {
+    font-size: 16px;
+    text-decoration: underline;
+    padding: 2% 20%;
+    display: block;
+    text-align: left;
+}
+
+Year {
+    text-align: center;
+}
+
+Genre {
+    text-align: right;
+}
+
