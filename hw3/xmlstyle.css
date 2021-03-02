@@ -1,0 +1,47 @@
+Slist {
+    vertical-align: center;
+    text-align: center;
+    margin: auto;
+    /* padding: 10%; */
+}
+Song {
+    display: block;
+    text-align: center;
+    padding: 2%;
+    font-size: 30px;
+    /* padding-top: 15px; */
+    margin: 5%;
+    background-color: #8e86e6;
+}
+Song info {
+    font-size: 16px;
+    padding: 2% 20%;
+    display: block;
+    text-align: center;
+}
+
+Year {
+    text-align: center;
+}
+
+Year::after, name::after, Genre::after {
+    content: "\a";
+    white-space: pre;
+}
+
+Year::before {
+    content: "Released on: ";
+}
+
+name::before {
+    content: "Artist: ";
+}
+
+Genre::before {
+    content: "Genre: ";
+}
+
+Genre {
+    text-align: right;
+}
+

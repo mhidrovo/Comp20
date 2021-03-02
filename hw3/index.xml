@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="xmlstyle.css" ?>
+<Slist>
+    <Song> 
+         Sigo Extrañándote
+        <info> 
+        <name> J Balvin </name>
+            <Year> 2016 </Year>
+            <Genre> Reggaetón </Genre>
+        </info>
+    </Song>
+    <Song> En Mí
+        <info>  
+            <name> J Balvin </name>
+            <Year> 2018 </Year>
+            <Genre> Reggaetón </Genre>
+        </info>
+    </Song>
+    <Song> Gris
+        <info> 
+            <name> J Balvin </name>
+            <Year> 2020 </Year>
+            <Genre> Reggaetón </Genre>
+        </info>
+    </Song>
+    <Song> LA CANCIÓN
+        <info> 
+            <name> J Balvin </name>
+            <Year> 2019 </Year>
+            <Genre> Reggaetón </Genre>
+        </info>
+    </Song> 
+
+    <Song> De Música Ligera 
+        <info> 
+            <name> Soda Stereo </name>
+            <Year> 1990 </Year>
+            <Genre> Pop Rock </Genre>
+        </info>
+    </Song>
+    <Song> Persiana Americana 
+        <info> 
+            <name> Soda Stereo </name>
+            <Year> 1986 </Year>
+            <Genre> Pop Rock </Genre>
+        </info>
+    </Song>
+    <Song> Prófugos
+        <info> 
+            <name> Soda Stereo </name>
+            <Year> 1986 </Year> 
+            <Genre> Pop Rock </Genre>
+        </info>
+    </Song>
+    <Song> Spanish Key
+        <info> 
+            <name> Miles Davis </name>
+            <Year> 1970 </Year>
+            <Genre> Jazz Rock </Genre>
+        </info>
+    </Song>
+    <Song> So What
+        <info> 
+            <name> Miles Davis </name>
+            <Year> 1959 </Year>
+            <Genre> Modal Jazz </Genre>
+        </info>
+    </Song>
+    <Song> Freddie Freeloader
+        <info> 
+            <name> Miles Davis </name>
+            <Year> 1959 </Year>
+            <Genre> Modal Jazz </Genre>
+        </info>
+    </Song>
+    
+</Slist>
