@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Jade Delight</title>
+<style>
+	.errMsg {color: #D20E11; border: solid 1px #d20e11; display:none;  
+			padding: 1px 15px;	}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+</head>
+<!-- onload="hideStuff()" -->
+<body>
+<script language="javascript">
+NUM_ITEMS = 5
+prices = [4.5, 6.25, 5.25, 6.50, 2.35]
+function order_received()
+{
+	
+	d = new Date();
+	minutes = d.getMinutes();
+	hour = d.getHours();
+	if(document.data.p_or_d[1].checked)
+	{
+		total_wait = addTime(hour, minutes, 30)
+	} else {
+		total_wait = addTime(hour, minutes, 15)
+	}
+	displayPurchase(total_wait)
+}
+
+function hasEnoughItems()
+{
+	hasItems = false
+	for(i = 0; i < NUM_ITEMS; i++)
+	{
+		if(arrQuants[i] != 0)
+		{
+			hasItems = true
+		}
+	}
+	if (hasItems == false)
+	{
+		alert("Please order at least one item")
+		return false
+	}
+	return true
+}
+
+function addTime(hour, minutes, wait_time)
+{
+	if (minutes + wait_time > 59)
+	{
+		return ((hour + 1) + ":" + (minutes % 60))
+	}
+	else {
+		return(hour + ":" + (minutes + wait_time))
+	}
+}
+function MenuItem(name, cost)
+{
+	this.name = name;
+	this.cost=cost;
+}
+
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 4.5),
+	new MenuItem("Sweet and Sour Pork", 6.25),
+	new MenuItem("Shrimp Lo Mein", 5.25),
+	new MenuItem("Moo Shi Chicken", 6.5),
+	new MenuItem("Fried Rice", 2.35)
+);
+
+function makeSelect(name, minRange, maxRange)
+{
+	var t= "";
+	t = "<select name='" + name + "' size='1'>";
+	for (j=minRange; j<=maxRange; j++)
+	   t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	return t;
+}
+
+function hideStuff() 
+{
+	document.getElementById("city").style.display = "none";
+	document.getElementById("street").style.display = "none";
+
+}
+
+function showStuff()
+{
+	document.getElementById("city").style.display = "block";
+	document.getElementById("street").style.display = "block";
+}
+
+function validPhoneNumber()
+{
+	var input = document.data.phone.value
+	var patt1 = /\[^0-9]/g;
+	var result = input.match(patt1);
+	if(result != null || input.length != 10)
+	{
+		return false;
+	}
+	return true;
+}
+function validate()
+{
+	err=false;
+	document.getElementById("errName").style.display = "none";
+	document.getElementById("errPhone").style.display = "none";
+	document.getElementById("errAddress").style.display = "none";
+	document.getElementById("errStreet").style.display = "none";
+	with (document.data)
+	{
+		if (lname.value=="")
+		{
+			document.getElementById("errName").style.display = "inline-block";
+			lname.focus();
+			err=true;
+		}
+		if (phone.value=="" || !validPhoneNumber())
+		{
+			document.getElementById("errPhone").style.display = "inline-block";
+
+			phone.focus();
+			err=true;
+		}
+		if(document.data.p_or_d[1].checked && city.value=="")
+		{
+			document.getElementById("errAddress").style.display = "inline-block";
+			city.focus();
+			err=true;
+		}
+		if(document.data.p_or_d[1].checked && street.value=="")
+		{
+			document.getElementById("errStreet").style.display = "inline-block";
+			
+			street.focus();
+			err=true;
+		}
+
+	}
+	if(!err && hasEnoughItems()) {
+		order_received()
+	}
+	return !err;
+}
+
+chickenChopSuey = document.getElementsByName("quan0")
+sweetSourPork = document.getElementsByName("quan1")
+shrimpLoMein= document.getElementsByName("quan2")
+mooShiChicken = document.getElementsByName("quan3")
+friedRice = document.getElementsByName("quan4")
+
+window.onload = function () {
+		chickenChopSuey[0].addEventListener("change", function()
+		{
+			getTotal(0, chickenChopSuey[0].selectedIndex)
+		})
+		sweetSourPork[0].addEventListener("change", function() {
+			getTotal(1, sweetSourPork[0].selectedIndex)
+		})
+		shrimpLoMein[0].addEventListener("change", function()
+		{
+			getTotal(2, shrimpLoMein[0].selectedIndex)
+		})
+		mooShiChicken[0].addEventListener("change", function() 
+		{
+			getTotal(3, mooShiChicken[0].selectedIndex)
+		})
+		friedRice[0].addEventListener("change", function() 
+		{
+			getTotal(4, friedRice[0].selectedIndex)
+		})	
+}
+
+str = "Thank you for your purchase"
+arrPrices = [0.0, 0.0, 0.0, 0.0, 0.0]
+arrQuants = [0, 0, 0, 0, 0]
+let total_price
+function getTotal(index, object)
+{
+		price = parseFloat(menuItems[index].cost * object).toFixed(2)
+		arrPrices[index] = price
+		arrQuants[index] = object
+		document.getElementsByName("cost")[index].value = price
+		calcSubtotal()	
+}
+
+function calcSubtotal()
+{
+	let subtotal = 0.00
+	for(i = 0; i < NUM_ITEMS; i++)
+	{
+		curr_price = arrPrices[i]
+		curr_price = parseFloat(curr_price)
+		subtotal = subtotal + curr_price
+	}
+	document.getElementsByName("subtotal")[0].value = subtotal
+	taxAmount = (subtotal * 0.0625).toFixed(2)
+	document.getElementsByName("tax")[0].value = taxAmount
+	total = parseFloat(subtotal) + parseFloat(taxAmount)
+	total_price = total
+	document.getElementsByName("total")[0].value = total
+}
+
+function displayPurchase(total_wait)
+{
+	str = "Thank you for buying at Jade's Delight! <br>"
+	for(i = 0; i < NUM_ITEMS; i++)
+	{
+		if(arrQuants[i] != 0)
+		{
+			str += menuItems[i].name + " <br>  Amount: " + arrQuants[i] + "<br>"
+		}
+	}
+	str += "Total amount: " + total_price	
+	str += "<br> Expected "
+	if(document.data.p_or_d[1].checked)
+	{
+		str+= " delivery "
+	}
+	else 
+	{
+		str+= " pickup "
+	}
+	str += "time: " + total_wait
+	openWindow(str)
+}
+
+function openWindow(str, total_wait)
+{
+	newWindow = window.open("", "", "width=500,height=500");
+	newWindow.document.write(str)
+}
+
+
+</script>
+
+<h1>Jade Delight</h1>
+<form
+	name= "data"
+	method = "post"
+>
+
+<p>First Name: <input type="text"  name='fname' /></p>
+<p>Last Name*:  <input type="text"  name='lname' /></p>
+	<div id="errName" class="errMsg" display = "none"> Last Name is required</div>
+
+
+<p id= 'street' style="display: none;">Street: <input type="text"  name='street' /></p>
+<div id="errStreet" class="errMsg" display = "none"> Street name is required if you order delivery</div>
+<p id="city" style="display: none;">City: <input type="text"  name='city' /></p>
+<div id="errAddress" class="errMsg" display = "none"> City is required if you order delivery</div>
+<p id= "phone">Phone*: <input type="text"  name='phone'/></p>
+<div id="errPhone" class="errMsg" display= "none"> Valid phone number is required</div>
+
+<p> 
+	<input type="radio"  name="p_or_d" value = "pickup" checked ="checked" onclick= "hideStuff()"/>Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery' onclick= "showStuff()"/>
+	Delivery
+</p>
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+<script language="javascript">
+	
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr><td>";
+	  s += makeSelect("quan" + i, 0, 10);
+	  s += "</td><td>" + menuItems[i].name + "</td>";
+	  s += "<td> $ " + menuItems[i].cost.toFixed(2) + "</td>";
+	  s += "<td>$<input type='text' name='cost'/></td></tr>";
+  }
+  document.writeln(s);
+</script>
+</table>
+<p>Subtotal: 
+   $<input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p>Mass tax 6.25%:
+  $ <input type="text"  name='tax' id="tax" />
+</p>
+<p>Total: $ <input type="text"  name='total' id="total" />
+</p>
+
+<input type = "button" value = "Submit Order" onclick="return validate()"/>
+
+</form>
+</body>
+</html>
