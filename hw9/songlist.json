@@ -1,0 +1,62 @@
+[
+    {
+        "song_name" : "Sigo Extrañándote",
+        "artist" : "J Balvin",
+        "genre" : ["Reggaeton"],
+        "year" : "2016"
+    },
+    {
+        "song_name" : "En Mí",
+        "artist" : "J Balvin",
+        "genre" : ["Reggaeton"],
+        "year" : "2018"
+    },
+    {
+        "song_name" : "Gris",
+        "artist" : "J Balvin",
+        "genre" : ["Reggaeton"],
+        "year" : "2020"
+    },
+    {
+        "song_name": "LA CANCION",
+        "artist" : "J Balvin",
+        "genre" : ["Reggaeton"],
+        "year" : "2019"
+    },
+    {
+        "song_name" : "De Musica Ligera",
+        "artist" : "Soda Stereo",
+        "genre" : ["Pop Rock"],
+        "year" : "1990"       
+    },
+    {
+        "song_name" : "Persiana Americana",
+        "artist" : "Soda Stereo",
+        "genre" : ["Pop Rock"],
+        "year" : "1986"
+    },
+    {
+        "song_name" : "Profugos",
+        "artist" :"Soda Stereo",
+        "genre" : ["Pop Rock"],
+        "year" : "1986"
+    },
+    {
+        "song_name" : "Spanish Key",
+        "artist": "Miles Davis",
+        "genre" :["Jazz Rock"],
+        "year" : "1970"
+    },
+    {
+        "song_name" : "So What",
+        "artist" :"Miles Davis",
+        "genre" : ["Modal Jazz"],
+        "year" : "1959"
+    },
+    {
+        "song_name" : "Freddie Freeloader",
+        "artist" : "Miles Davis",
+        "genre" : ["Modal Jazz"],
+        "year" : "1959"
+    }
+]
