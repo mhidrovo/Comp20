@@ -2,15 +2,114 @@
 <html>
     <head>
         <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-        <script type="text/javascript" src="data.json"></script>
+        <!-- <script type="text/javascript" src="data.json"></script> -->
+        <style>
+            /* .myList {
+                list-style: none;
+            } */
+            #song_name::before {
+                content: "Song: ";
+            }
+            #song_year::before {
+                content: "Year released: "
+            }
+
+            #song_artist::before {
+                content: "By: "
+            }
+
+            #song_info {
+                margin: 8px;
+            }
+
+
+        </style>
     </head>
     <body>
-        <script>
+        <form>
+            <select id="display_genre">
+                <option>Display All</option>
+                <option>Reggaeton</option>
+                <option>Pop Rock</option>
+                <option>Jazz Rock</option>
+                <option>Modal Jazz</option>
+                <!-- <div id="AllSongs">
+                    &nbsp;
+                </div> -->
+            </select>
+            <script>
+                
+                function recycle()
+                {
+                    x = document.getElementsByClassName('myList')
+                    for(i = 0; i < x.length; i++)
+                    {
+                        x[i].style.display = "none"
+                    }
+                    genre_to_display = document.getElementById("display_genre")
+                        for(i = 0; i < newArray.length; i++)
+                        {
+                            if(newArray[i].genre == genre_to_display.value)
+                            {
+                                displayByGenre(genre_to_display.value, newArray[i])
+                            } 
+                        }
+                 }   
+                function displayByGenre(optionSelected, song) {                  
+                    if(optionSelected == "Display All" || song.genre == optionSelected)
+                    {
+                        div = document.createElement('div')
+                        div.class = 'myList'
+                        song_info = document.createElement('div')
+                        song_info.id = "song_info"
 
-                format = JSON.parse(songlist)
-                // document.write("HEY!")
-                alert(format[0].song_name)
-            
-        </script>
+                        song_name = document.createElement('div')
+                        addIDHTML(song_name, "song_name", song.title)
+
+                        song_genre = document.createElement('div')
+                        addIDHTML(song_genre, "song_genre", song.genre)
+
+                        song_year = document.createElement('div')
+                        addIDHTML(song_year, "song_year", song.year)
+
+                        song_artist = document.createElement('div')
+                        addIDHTML(song_artist, "song_artist", song.artist)
+
+                        song_info.innerHTML = song_name.outerHTML + song_artist.outerHTML + song_genre.outerHTML + song_year.outerHTML
+                        div.appendChild(song_info)
+                        document.body.appendChild(div)
+                    }                        
+                }
+                    
+
+                newArray = []
+                window.onload = function(){
+                    $.get( "https://raw.githubusercontent.com/mhidrovo/Comp20/main/hw9/songlist.json", 
+                    function( songlist ) { 
+                    format = JSON.stringify(songlist)
+                    stuff = JSON.parse(songlist)
+
+                    stuff.forEach(function(song) {                        
+                        SongObject = new Song(song.song_name, song.genre, song.artist, song.year)
+                        newArray.push(SongObject)
+                        displayByGenre("Display All", SongObject)
+                    })
+
+                    })
+                }
+
+                function Song(title, genre, artist, year) {
+                    this.title = title
+                    this.genre = genre
+                    this.artist = artist 
+                    this.year = year
+                }
+                function addIDHTML(div_var, name_string, attribute_type) {
+                    div_var.id = name_string
+                    div_var.innerHTML = attribute_type
+                }
+            </script>
+            <input type="button" value="Filter" onclick="recycle()">
+        </form>
     </body>
 </html>
