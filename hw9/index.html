@@ -33,9 +33,6 @@
                 <option>Pop Rock</option>
                 <option>Jazz Rock</option>
                 <option>Modal Jazz</option>
-                <!-- <div id="AllSongs">
-                    &nbsp;
-                </div> -->
             </select>
             <script>
                 
@@ -49,7 +46,7 @@
                     genre_to_display = document.getElementById("display_genre")
                         for(i = 0; i < newArray.length; i++)
                         {
-                            if(newArray[i].genre == genre_to_display.value)
+                            if(newArray[i].genre == genre_to_display.value || genre_to_display.value == "Display All")
                             {
                                 displayByGenre(genre_to_display.value, newArray[i])
                             } 
@@ -59,7 +56,7 @@
                     if(optionSelected == "Display All" || song.genre == optionSelected)
                     {
                         div = document.createElement('div')
-                        div.class = 'myList'
+                        div.className = 'myList'
                         song_info = document.createElement('div')
                         song_info.id = "song_info"
 
