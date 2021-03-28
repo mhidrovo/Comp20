@@ -3,59 +3,90 @@
 <head>
 	<title>Holiday API</title>
 	<meta charset="utf-8"/>
+    <style>
+        body {
+            margin: 10px;
+            padding: 0 25%;
+            background-color: #dcbcee;
+        }
+        input {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        a {
+            color: rgba(35, 77, 214, 0.533);
+            text-decoration: none;
+        }
+        a:hover{
+            background-color: #c9cfcd;
+        }
+        .description {
+            
+        }
+        #HolidayName {
+            margin: 5px;
+        }
+    </style>
 	<script>
 		function getHoliday() {
-			/* Step 1: Make instance of request object...
-			...to make HTTP request after page is loaded*/
 			request = new XMLHttpRequest();
 			console.log("1 - request object created");
  
-			// Step 2: Set the URL for the AJAX request to be the JSON file
- 
-		request.open("GET", "https://holidayapi.com/v1/holidays?pretty&key=155c2f04-6604-4b87-9ee8-5656bae47065&country=US&year=2020", true)
+		    request.open("GET", "https://holidayapi.com/v1/holidays?pretty&key=155c2f04-6604-4b87-9ee8-5656bae47065&country=US&year=2020", true)
 
 			console.log("2 - opened request file");
  
-			// Step 3: set up event handler/callback
-
 			request.onreadystatechange = function() {
 				 
 				if (request.readyState == 4 && request.status == 200) {
 
-					// Step 5: wait for done + success
+                    let holiday_info = document.getElementById("HolidayName")
+                    holiday_info.innerHTML=""
 					console.log("5 - response received");
-					// result = request.responseText;
-					//alert(result);
-					document.getElementById("data").innerHTML = result;
-					weather = JSON.parse(result);
-					
-				/*	document.getElementById("data").innerHTML ="current temp in boston: " + weather["current"]["weather"][0]["description"]; 
-				*/	
+					result = request.responseText;
+					response = JSON.parse(result);
+                    holidayArr = response.holidays
+                    console.log(holidayArr);
+                    rand_index = Math.floor(Math.random() * holidayArr.length)
+                    myHoliday = holidayArr[rand_index]
+                    
+                    holiday_info.innerHTML = myHoliday.name + '<br />' + "Date: " + myHoliday.date
 				}
 				else if (request.readyState == 4 && request.status != 200) {
 
 					document.getElementById("data").innerHTML = "Something is wrong!  Check the logs to see where this went off the rails";
 
 				}
-
-				else if (request.readyState == 3) {
-
-					document.getElementById("data").innerHTML = "Too soon!  Try again";
-
-				}
-
 			}
-		// Step 4: fire off the HTTP request
 			request.send();
 			console.log("4 - Request sent");
 		}
+        
 	</script>
 </head>
 
 
-<body onload="getWeather()">
+<body>
 
-	<h1>Weather</h1>
-	<div id="data">Loading...</div>
+	<h1>Holidays</h1>
+	<div id="data">
+        Welcome! Click to get a random holiday in 2020?
+    </div>
+    <form name="holiday_form">
+        <!-- <input id= "holiday_date" type="text" placeholder="Enter the country's name"> -->
+        <input type="button" id="submit" value ="Get random US holiday!" onclick="getHoliday()">
+        <div id="HolidayName">
+            &nbsp;
+        </div>
+        <div class="description">
+            Hope you enjoy this usability of an API! I am currently using <a href="https://holidayapi.com/">Holiday API</a>. 
+            It provides holidays in the US on 2020. Make sure to check it out!
+            <br>
+            I created an XMLHttpRequest object, opened the JSON file holding the holiday information with a GET request, and extracted information when my request was validated. 
+            <br>
+            Two ways to use this: <ul><li>Learn about the cultures in America's melting pot! It is always a fulfilling experience to learn about all the traditions being celebrated in the USA year-round.</li>
+                <li>It could also be useful to create a program that randomly assigns a real holiday to a character, for example, in a book or video game!</li>
+            </ul>
+        </div>
+    </form>
 </body>
 </html>
