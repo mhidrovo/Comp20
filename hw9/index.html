@@ -83,7 +83,10 @@
                     function( songlist ) { 
                     format = JSON.stringify(songlist)
                     stuff = JSON.parse(songlist)
-
+                    everything = document.createElement('div')
+                    everything.innerHTML = format
+                    document.body.appendChild(everything)
+                    // document.write(format)
                     stuff.forEach(function(song) {                        
                         SongObject = new Song(song.song_name, song.genre, song.artist, song.year)
                         newArray.push(SongObject)
