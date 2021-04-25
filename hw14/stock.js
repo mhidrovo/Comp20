@@ -2,7 +2,6 @@ const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://mhidrovo:aaa@cluster0.jwixh.mongodb.net/Stock?retry\
              Writes=true&w=majority";  
 
-var http = require('http');
 var fs = require('fs');
 var readline = require('readline');
 

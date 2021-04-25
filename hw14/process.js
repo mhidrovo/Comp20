@@ -5,6 +5,7 @@ const url = "mongodb+srv://mhidrovo:aaa@cluster0.jwixh.mongodb.net/Stock?retry\
 var http = require('http');
 var fs = require('fs');
 var querystring = require('querystring');
+var port = process.env.PORT || 3000;
 
 http.createServer(function(req, res)
 {
@@ -61,4 +62,4 @@ http.createServer(function(req, res)
     {
         res.end();
     }
-}).listen(8080);
+}).listen(port);
